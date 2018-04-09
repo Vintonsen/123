@@ -23,5 +23,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="com/three/smbms/user/UserMapper.xml"/>
+		<mapper resource="com/three/smbms/provider/ProviderMapper.xml"/>
 	</mappers>
 </configuration>

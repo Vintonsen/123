@@ -7,4 +7,8 @@
 	<select id="count" resultType="int">
 		SELECT COUNT(1) AS COUNT FROM smbms_user
 	</select>
+	<!-- 查询用户列表 -->
+	<select id="getUserList" resultType="com.three.smbms.pojo.User">
+		select * from smbms_user
+	</select>
 </mapper>

@@ -1,10 +1,9 @@
 package com.three.smbms.test;
 
-import java.awt.event.HierarchyBoundsAdapter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,13 +12,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import com.three.smbms.pojo.User;
+import com.three.smbms.pojo.Provider;
 import com.three.smbms.utils.MyBatisUtil;
 
-public class UserTest {
+public class ProviderTest {
 
 	//关联日志
-	private static Logger logger = Logger.getLogger(UserTest.class);
+	private Logger logger = Logger.getLogger(UserTest.class);
 	
 	@Test
 	public void TestCount(){
@@ -33,7 +32,7 @@ public class UserTest {
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			//创建SqlSession对象
 			session = factory.openSession();
-			count = session.selectOne("com.three.smbms.user.UserMapper.count");
+			count = session.selectOne("com.three.smbms.provider.ProviderMapper.count");
 			logger.debug("User count--->" + count);
 		}catch(IOException e){
 			e.printStackTrace();
@@ -43,21 +42,20 @@ public class UserTest {
 		}
 
 	}
-
+	
 	@Test
-	public void TestgetUserList() {
-		List<User> list = new ArrayList<User>();
+	public void TestgetProviderList(){
+		List<Provider> list = new ArrayList<Provider>();
 		SqlSession session = null;
-		try{
+		try {
 			session = MyBatisUtil.createSession();
-			list = session.selectList("com.three.smbms.user.UserMapper.getUserList");
-			for(User u:list){
-				logger.debug("username:"+u.getUserName());
+			list = session.selectList("com.three.smbms.provider.ProviderMapper.getProviderList");
+			for(Provider u:list){
+				logger.debug("proName:" + u.getProName());
 			}
-		}catch(IllegalAccessError e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			//关闭session
 			MyBatisUtil.closeSession(session);
 		}
 	}
